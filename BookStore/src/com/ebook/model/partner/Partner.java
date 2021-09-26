@@ -7,22 +7,24 @@ import com.ebook.model.customer.Customer;
 import com.ebook.model.item.Product;
 
 public class Partner extends Customer{
-	private List<Product> products = new ArrayList<Product>();
+	private List<Product> inventory = new ArrayList<Product>();
 	private int partnerID;
 	
-	public List<Product> getProducts(){
-		return products;
+	public List<Product> getInventory(){
+		return inventory;
 	}
 	
 	public void setProduct(List<Product> products) {
-		this.products = products;
+		this.inventory = products;
 	}
 	
 	public int getPartnerID() {
 		return  partnerID;
 	}
 	
-	public void setPartnerID();
+	public void setPartnerID(int partnerID) {
+		this.partnerID = partnerID;
+	}
 
 }
 
