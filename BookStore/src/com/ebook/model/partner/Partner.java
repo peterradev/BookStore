@@ -14,8 +14,8 @@ public class Partner extends Customer{
 		return inventory;
 	}
 	
-	public void setProduct(List<Product> products) {
-		this.inventory = products;
+	public void addProduct(Product product) {
+		this.inventory.add(product);
 	}
 	
 	public int getPartnerID() {
