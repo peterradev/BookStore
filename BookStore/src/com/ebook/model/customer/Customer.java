@@ -3,11 +3,14 @@ package com.ebook.model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.ebook.model.customer.Address;
 import com.ebook.model.order.Order;
 
-
+@XmlRootElement(name = "Customer")
 public class Customer {
+	private CustomerCard card;
 	private String customerId;
 	private String lastName;
 	private String firstName;
@@ -65,5 +68,13 @@ public class Customer {
 	
 	public void addOrder(Order order) {
 		orders.add(order);
+	}
+	
+	public void addCard(CustomerCard card) {
+		this.card = card;
+	}
+	
+	public CustomerCard getCard() {
+		return card;
 	}
 }

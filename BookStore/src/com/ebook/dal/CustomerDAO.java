@@ -16,7 +16,7 @@ public class CustomerDAO {
 	    try { 		
 	    	//Get Customer
 	    	Statement st = DBHelper.getConnection().createStatement();
-	    	String selectCustomerQuery = "SELECT customerID, lname, fname FROM Customer WHERE customerID = '" + customerId + "'";
+	    	String selectCustomerQuery = "SELECT customerID, last_name, first_name FROM Customer WHERE customerID = '" + customerId + "'";
 
 	    	ResultSet custRS = st.executeQuery(selectCustomerQuery);      
 	    	System.out.println("CustomerDAO: *************** Query " + selectCustomerQuery);
@@ -25,32 +25,32 @@ public class CustomerDAO {
     	  Customer customer = new Customer();
 	      while ( custRS.next() ) {
 	    	  customer.setCustomerId(custRS.getString("customerID"));
-	    	  customer.setLastName(custRS.getString("lname"));
-	    	  customer.setFirstName(custRS.getString("fname"));
+	    	  customer.setLastName(custRS.getString("last_name"));
+	    	  customer.setFirstName(custRS.getString("first_name"));
 	      }
 	      //close to manage resources
 	      custRS.close();
 	      	    		  
 	      //Get Address
-	      String selectAddressQuery = "SELECT addressID, street, unit, city, state, zip FROM Address WHERE customerID = '" + customerId + "'";
-	      ResultSet addRS = st.executeQuery(selectAddressQuery);
-    	  Address address = new Address();
-    	  
-    	  System.out.println("CustomerDAO: *************** Query " + selectAddressQuery);
-    	  
-	      while ( addRS.next() ) {
-	    	  address.setAddressId(addRS.getString("addressid"));
-	    	  address.setStreet(addRS.getString("street"));
-	    	  address.setUnit(addRS.getString("unit"));
-	    	  address.setCity(addRS.getString("city"));
-	    	  address.setState(addRS.getString("state"));
-	    	  address.setZip(addRS.getString("zip"));
-	      }
-	      
-	      customer.setBillingAddress(address);
-	      //close to manage resources
-	      addRS.close();
-	      st.close();
+//	      String selectAddressQuery = "SELECT addressID, street, unit, city, state, zip FROM Address WHERE customerID = '" + customerId + "'";
+//	      ResultSet addRS = st.executeQuery(selectAddressQuery);
+//    	  Address address = new Address();
+//    	  
+//    	  System.out.println("CustomerDAO: *************** Query " + selectAddressQuery);
+//    	  
+//	      while ( addRS.next() ) {
+//	    	  address.setAddressId(addRS.getString("addressid"));
+//	    	  address.setStreet(addRS.getString("street"));
+//	    	  address.setUnit(addRS.getString("unit"));
+//	    	  address.setCity(addRS.getString("city"));
+//	    	  address.setState(addRS.getString("state"));
+//	    	  address.setZip(addRS.getString("zip"));
+//	      }
+//	      
+//	      customer.setBillingAddress(address);
+//	      //close to manage resources
+//	      addRS.close();
+//	      st.close();
 	      
 	      return customer;
 	    }	    
@@ -70,7 +70,7 @@ public class CustomerDAO {
 
         try {
         	//Insert the customer object
-            String custStm = "INSERT INTO Customer(customerID, lname, fname) VALUES(?, ?, ?)";
+            String custStm = "INSERT INTO Customer(customerID, last_name, first_name) VALUES(?, ?, ?)";
             custPst = con.prepareStatement(custStm);
             custPst.setString(1, cust.getCustomerId());
             custPst.setString(2, cust.getLastName());       
@@ -78,16 +78,16 @@ public class CustomerDAO {
             custPst.executeUpdate();
 
         	//Insert the customer address object
-            String addStm = "INSERT INTO Address(customerID, addressID, street, unit, city, state, zip) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            addPst = con.prepareStatement(addStm);
-            addPst.setString(1, cust.getCustomerId());
-            addPst.setString(2, cust.getBillingAddress().getAddressId());  
-            addPst.setString(3, cust.getBillingAddress().getStreet());       
-            addPst.setString(4, cust.getBillingAddress().getUnit());  
-            addPst.setString(5, cust.getBillingAddress().getCity());  
-            addPst.setString(6, cust.getBillingAddress().getState());      
-            addPst.setString(7, cust.getBillingAddress().getZip());  
-            addPst.executeUpdate();
+//            String addStm = "INSERT INTO Address(customerID, addressID, street, unit, city, state, zip) VALUES(?, ?, ?, ?, ?, ?, ?)";
+//            addPst = con.prepareStatement(addStm);
+//            addPst.setString(1, cust.getCustomerId());
+//            addPst.setString(2, cust.getBillingAddress().getAddressId());  
+//            addPst.setString(3, cust.getBillingAddress().getStreet());       
+//            addPst.setString(4, cust.getBillingAddress().getUnit());  
+//            addPst.setString(5, cust.getBillingAddress().getCity());  
+//            addPst.setString(6, cust.getBillingAddress().getState());      
+//            addPst.setString(7, cust.getBillingAddress().getZip());  
+//            addPst.executeUpdate();
         } catch (SQLException ex) {
 
         } finally {
