@@ -1,0 +1,56 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch BookStoreClient",
+      "request": "launch",
+      "mainClass": "com.ebook.view.BookStoreClient",
+      "projectName": "BookStore (2)"
+    },
+    {
+      "type": "java",
+      "name": "Launch BookStoreClient2",
+      "request": "launch",
+      "mainClass": "com.ebook.view.BookStoreClient2",
+      "projectName": "BookStore (2)"
+    },
+    {
+      "type": "java",
+      "name": "Launch BookStoreTest",
+      "request": "launch",
+      "mainClass": "com.ebook.view.BookStoreTest",
+      "projectName": "BookStore (2)"
+    },
+    {
+      "type": "java",
+      "name": "Launch BookStoreClient(1)",
+      "request": "launch",
+      "mainClass": "com.ebook.view.BookStoreClient",
+      "projectName": "BookStore"
+    },
+    {
+      "type": "java",
+      "name": "Launch BookStoreClient2(1)",
+      "request": "launch",
+      "mainClass": "com.ebook.view.BookStoreClient2",
+      "projectName": "BookStore"
+    },
+    {
+      "type": "java",
+      "name": "Launch BookStoreTest(1)",
+      "request": "launch",
+      "mainClass": "com.ebook.view.BookStoreTest",
+      "projectName": "BookStore"
+    }
+  ]
+}

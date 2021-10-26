@@ -3,12 +3,11 @@ package com.ebook.model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
+// import javax.xml.bind.annotation.XmlRootElement;
 
 import com.ebook.model.customer.Address;
 import com.ebook.model.order.Order;
 
-@XmlRootElement(name = "Customer")
 public class Customer {
 	private CustomerCard card;
 	private String customerId;
@@ -25,7 +24,7 @@ public class Customer {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	
+
 	public Address getBillingAddress() {
 		return billingAddress;
 	}
@@ -41,7 +40,7 @@ public class Customer {
 	public void setShippingAddress(Address shippingAddress) {
 		this.shippingAddress = shippingAddress;
 	}
-	
+
 	public String getCustomerId() {
 		return customerId;
 	}
@@ -57,7 +56,7 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -65,15 +64,15 @@ public class Customer {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public void addOrder(Order order) {
 		orders.add(order);
 	}
-	
+
 	public void addCard(CustomerCard card) {
 		this.card = card;
 	}
-	
+
 	public CustomerCard getCard() {
 		return card;
 	}

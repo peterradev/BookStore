@@ -2,14 +2,14 @@ package com.ebook.view;
 
 import com.ebook.model.customer.Address;
 import com.ebook.model.customer.Customer;
-import com.ebook.model.service.CustomerService;
+import com.ebook.model.customer.CustomerManager;
 
 public class BookStoreClient2 {
 	public static void main (String args[]) throws Exception {
 		
 		//Client will use the customer service to have access to anything related to customer functionality.
 	      System.out.println("*************** Creating Customer service object *************************");
-		CustomerService custService = new CustomerService();    
+		CustomerManager custService = new CustomerManager();    
 
 		System.out.println("BookStoreClient2: *************** instantiating a customer and its address *************************");
         Customer customer = new Customer();;
