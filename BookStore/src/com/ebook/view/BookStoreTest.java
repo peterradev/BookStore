@@ -56,7 +56,7 @@ public class BookStoreTest {
 
 		Order order = new Order();
 		order.addProduct(p, 4);
-		order.setOrderId("11113");
+		order.setOrderId("11111");
 
 		orderMan.addOrder(order);
 		orderMan.getOrder(order.getOrderId());
@@ -65,7 +65,7 @@ public class BookStoreTest {
 
 		System.out.println("BookStoreTest: ************** trying to search order in the database *************");
 
-		Order searchedOrder = orderMan.findOrderById("11113");
+		Order searchedOrder = orderMan.findOrderById("11111");
 
 		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
 
@@ -73,14 +73,21 @@ public class BookStoreTest {
 	
 		orderMan.confirmOrder(order);
 		
+	
+		
 		// The order manager does confirm order but gets the order state faster than it can update it, in the database it shows order state as ordered
 		
 		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
 		
-		// Here i am cancelling the order
-		orderMan.cancelOrder(order);
+		orderMan.orderPayed(order);
+		
+		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
+
+		
+		// Here it is canceling the order
+//		orderMan.cancelOrder(order);
 		System.out.println("BookStoreTest: *************** cancelling the order and updating it in our database **************");
-		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
+		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() +"\n");
 		
 
 	}

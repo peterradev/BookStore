@@ -1,5 +1,9 @@
 package com.ebook.model.order;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import com.ebook.dal.DBHelper;
 import com.ebook.dal.OrderDAO;
 
 public class OrderManager {
@@ -40,6 +44,27 @@ public class OrderManager {
 		order2.confirmOrder();
 		try {
 			orderDAO.confirmOrder(order2);
+		} catch (Exception se) {
+			System.out.println("OrderManager: Threw an Exception confirming order");
+			System.err.print(se.getMessage());
+		}
+	}
+
+	public void orderDelivered(Order order) {
+		order.orderDelivered();
+		try {
+			orderDAO.orderDelivered(order);
+		} catch (Exception se) {
+			System.out.println("OrderManager: Threw an Exception confirming order");
+			System.err.print(se.getMessage());
+		}
+	}
+
+	public void orderPayed(Order order) {
+		Order order2 = order;
+		order2.orderPayed();
+		try {
+			orderDAO.orderPayed(order2);
 		} catch (Exception se) {
 			System.out.println("OrderManager: Threw an Exception confirming order");
 			System.err.print(se.getMessage());
