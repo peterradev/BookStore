@@ -17,7 +17,7 @@ public class OrderDAO {
     try {
 
       Statement st = DBHelper.getConnection().createStatement();
-      String selectQueryString = "SELECT orderID, orderState FROM Order WHERE orderID = '" + orderId + "'";
+      String selectQueryString = "SELECT orderID, orderState FROM orders WHERE orderID = '" + orderId + "'";
 
       ResultSet orderRS = st.executeQuery(selectQueryString);
       System.out.println("OrderDAO: **************** Query " + selectQueryString);
@@ -43,7 +43,7 @@ public class OrderDAO {
     PreparedStatement orderPst = null;
 
     try {
-      String orderStm = "INSERT INTO Order (orderID, orderState) VALUES(?, ?)";
+      String orderStm = "INSERT INTO orders (orderID, orderState) VALUES(?, ?)";
       orderPst = con.prepareStatement(orderStm);
       orderPst.setString(1, order.getOrderId());
       orderPst.setString(2, order.getOrderState());
@@ -64,4 +64,51 @@ public class OrderDAO {
     }
   }
 
+  public void confirmOrder(Order order) {
+    Connection con = DBHelper.getConnection();
+    PreparedStatement orderPst = null;
+    try {
+      String orderStm = "UPDATE orders SET orderState = '" + order.getOrderState() + "' WHERE orderID = '"+ order.getOrderId() +"'";
+      orderPst = con.prepareStatement(orderStm);
+      orderPst.executeUpdate();
+    } catch (Exception se){
+    	
+    }
+    finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (SQLException se) {
+        System.err.println("OrderDAO: threw a SQLException updating the order object");
+        System.err.println(se.getMessage());
+      }
+    }
+  }
+ 
+  public void cancelOrder(Order order) {
+	    Connection con = DBHelper.getConnection();
+	    PreparedStatement orderPst = null;
+	    try {
+	      String orderStm = "UPDATE orders SET orderState = '" + order.getOrderState() + "' WHERE orderID = '"+ order.getOrderId() +"'";
+	      orderPst = con.prepareStatement(orderStm);
+	      orderPst.executeUpdate();
+	    } catch (Exception se){
+	    	
+	    }
+	    finally {
+	      try {
+	        if (con != null) {
+	          con.close();
+	        }
+	      } catch (SQLException se) {
+	        System.err.println("OrderDAO: threw a SQLException updating the order object");
+	        System.err.println(se.getMessage());
+	      }
+	    }
+	  }
+	 
+  
+  
+  
 }

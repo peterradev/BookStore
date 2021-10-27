@@ -112,7 +112,7 @@ public class Order {
 		return total;
 	}
 
-	@Param
+	
 	Customer customer;
 
 	public void acceptBuyOrder(Customer customer) {

@@ -35,4 +35,25 @@ public class OrderManager {
 
 	}
 
+	public void confirmOrder(Order order) {
+		Order order2 = order;
+		order2.confirmOrder();
+		try {
+			orderDAO.confirmOrder(order2);
+		} catch (Exception se) {
+			System.out.println("OrderManager: Threw an Exception confirming order");
+			System.err.print(se.getMessage());
+		}
+	}
+
+	public void cancelOrder(Order order) {
+		order.cancelOrder();
+		try {
+			orderDAO.cancelOrder(order);
+		} catch (Exception se) {
+			System.out.println("OrderManager: Threw an Exception cancelling order");
+			System.err.print(se.getMessage());
+		}
+	}
+
 }

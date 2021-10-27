@@ -2,8 +2,9 @@ package com.ebook.view;
 
 import com.ebook.model.customer.Customer;
 import com.ebook.model.customer.CustomerCard;
-import com.ebook.model.item.Book;
+import com.ebook.model.item.Product;
 import com.ebook.model.order.Order;
+import com.ebook.model.order.OrderManager;
 import com.ebook.model.partner.Partner;
 
 public class BookStoreTest {
@@ -38,13 +39,50 @@ public class BookStoreTest {
 		cust.addCard(card);
 		System.out.println(cust.getCard().getCardNum());
 
-		// Test for accepting buy order
-		Order order = new Order();
-		Book book = new Book();
-		book.setTitle("Book");
-		order.addProduct(book, 22);
+		// Cleint will use the order manager to have access to anything related to order
+		// functionality
+		System.out.println("*********** Creating Order Manager Object **************");
 
-		order.acceptBuyOrder();
+		OrderManager orderMan = new OrderManager();
+
+		System.out.println("BookStoreTest: *************** instantiating a customer and an order");
+
+		Customer c1 = new Customer();
+		c1.setFirstName("Billy");
+		c1.setLastName("Bob");
+		c1.setCustomerId("111111");
+
+		Product p = new Product();
+
+		Order order = new Order();
+		order.addProduct(p, 4);
+		order.setOrderId("11113");
+
+		orderMan.addOrder(order);
+		orderMan.getOrder(order.getOrderId());
+
+		System.out.println("BookStoreTest: ************** Order is inserted in BookStore Database ************");
+
+		System.out.println("BookStoreTest: ************** trying to search order in the database *************");
+
+		Order searchedOrder = orderMan.findOrderById("11113");
+
+		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
+
+		System.out.println("BookStoreTest: ************* updating the order state in the the database *********");
+	
+		orderMan.confirmOrder(order);
+		
+		// The order manager does confirm order but gets the order state faster than it can update it, in the database it shows order state as ordered
+		
+		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
+		
+		// Here i am cancelling the order
+		orderMan.cancelOrder(order);
+		System.out.println("BookStoreTest: *************** cancelling the order and updating it in our database **************");
+		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
+		
+
 	}
 
 }
