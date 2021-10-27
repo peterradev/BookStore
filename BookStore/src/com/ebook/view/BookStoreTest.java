@@ -79,10 +79,23 @@ public class BookStoreTest {
 		
 		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
 		
+		
+		// payment received changes to true
 		orderMan.orderPayed(order);
 		
 		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
 
+		
+		// 
+		orderMan.orderSentOut(order);
+		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
+
+		
+		orderMan.orderDelivered(order);
+		
+		orderMan.isFinished(order);
+		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
+		
 		
 		// Here it is canceling the order
 //		orderMan.cancelOrder(order);

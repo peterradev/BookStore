@@ -80,5 +80,25 @@ public class OrderManager {
 			System.err.print(se.getMessage());
 		}
 	}
+	
+	public void orderSentOut(Order order) {
+		order.orderSendOut();
+		try {
+			orderDAO.orderSentOut(order);
+		} catch(Exception se) {
+			System.err.println("OrderManager: Threw an Exception sending out order");
+			System.err.print(se.getMessage());
+		}
+	}
+	
+	public void isFinished(Order order) {
+		order.isFinished();
+		try {
+			orderDAO.isFinished(order);
+		} catch (Exception se){
+			System.err.println("OrderManager: Threw an Exception updateding orders database");
+			System.err.println(se.getMessage());
+		}
+	}
 
 }

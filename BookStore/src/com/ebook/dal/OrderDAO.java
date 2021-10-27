@@ -154,28 +154,49 @@ public class OrderDAO {
     }
   }
 
-  // public void orderPayed(Order order) {
-  // Connection con = DBHelper.getConnection();
-  // PreparedStatement orderPst = null;
+  
+  public void orderSentOut(Order order) {
+	  Connection con = DBHelper.getConnection();
+	  PreparedStatement orderPst = null;
+	  try {
+	      String orderStm = "UPDATE orders SET orderState = '" + order.getOrderState() + "' WHERE orderID = '"
+	          + order.getOrderId() + "'";
+	      orderPst = con.prepareStatement(orderStm);
+	      orderPst.executeUpdate();
+	    } catch (Exception se) {
 
-  // try {
-  // String orderStm = "UPDATE orders SET payment_received = 'y' WHERE orderID =
-  // '" + order.getOrderId() + "'";
-  // orderPst.setBoolean(1, order.isPaymentReceived());
-  // orderPst.executeUpdate();
-  // } catch (SQLException se) {
+	    } finally {
+	      try {
+	        if (con != null) {
+	          con.close();
+	        }
+	      } catch (SQLException se) {
+	        System.err.println("OrderDAO: threw a SQLException updating the order object");
+	        System.err.println(se.getMessage());
+	      }
+	    }
+  }
+  
+  public void isFinished(Order order) {
+	    Connection con = DBHelper.getConnection();
+	    PreparedStatement orderPst = null;
+	    try {
+	      String orderStm = "UPDATE orders SET orderState = '" + order.getOrderState() + "' WHERE orderID = '"
+	          + order.getOrderId() + "'";
+	      orderPst = con.prepareStatement(orderStm);
+	      orderPst.executeUpdate();
+	    } catch (Exception se) {
 
-  // } finally {
-  // try {
-  // if (con != null) {
-  // con.close();
-  // }
-  // } catch (SQLException se) {
-  // System.err.println("OrderDAP: threw a SQLException updating the order
-  // object");
-  // System.err.println(se.getMessage());
-  // }
-  // }
-  // }
-
+	    } finally {
+	      try {
+	        if (con != null) {
+	          con.close();
+	        }
+	      } catch (SQLException se) {
+	        System.err.println("OrderDAO: threw a SQLException updating the order object");
+	        System.err.println(se.getMessage());
+	      }
+	    }
+	  }
+  
 }
