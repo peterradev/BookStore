@@ -154,7 +154,7 @@ public class OrderDAO {
     }
   }
 
-  
+
   public void orderSentOut(Order order) {
 	  Connection con = DBHelper.getConnection();
 	  PreparedStatement orderPst = null;
@@ -176,7 +176,7 @@ public class OrderDAO {
 	      }
 	    }
   }
-  
+
   public void isFinished(Order order) {
 	    Connection con = DBHelper.getConnection();
 	    PreparedStatement orderPst = null;
@@ -198,5 +198,26 @@ public class OrderDAO {
 	      }
 	    }
 	  }
-  
+
+
+  public String getOrderState(Order order){
+	  
+    try{
+      Statement con = DBHelper.getConnection().createStatement();
+      String selectOrderQuery = "SELECT orderState FROM orders WHERE orderID = '" + order.getOrderId() + "'";
+      ResultSet ordRS = con.executeQuery(selectOrderQuery);
+
+//      Order order = new Order();
+      String s = ordRS.getString("orderState");
+      return s;
+    } catch (SQLException se){
+      System.err.println("OrderDAO: Threw a SQLException returning order state.");
+      System.err.println(se.getMessage());
+      se.printStackTrace();
+    }
+    return null;
+
+  }
+
+
 }

@@ -80,7 +80,7 @@ public class OrderManager {
 			System.err.print(se.getMessage());
 		}
 	}
-	
+
 	public void orderSentOut(Order order) {
 		order.orderSendOut();
 		try {
@@ -90,13 +90,23 @@ public class OrderManager {
 			System.err.print(se.getMessage());
 		}
 	}
-	
+
 	public void isFinished(Order order) {
 		order.isFinished();
 		try {
 			orderDAO.isFinished(order);
 		} catch (Exception se){
+			System.err.println(se.getMessage());
 			System.err.println("OrderManager: Threw an Exception updateding orders database");
+		}
+	}
+
+	public String getOrderState(Order order){
+		return order.getOrderState(order);
+		try{
+			orderDAO.getOrderState(order);
+		} catch (Exception se){
+			System.err.println("OrderManager: Threw an Exception getting order state");
 			System.err.println(se.getMessage());
 		}
 	}
