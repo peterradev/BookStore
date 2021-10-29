@@ -102,6 +102,8 @@ public class BookStoreTest {
 		System.out.println("BookStoreTest: *************** cancelling the order and updating it in our database **************");
 		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() +"\n");
 		
+		
+		System.out.println(orderMan.getOrderState(order));
 
 	}
 

@@ -102,13 +102,13 @@ public class OrderManager {
 	}
 
 	public String getOrderState(Order order){
-		return order.getOrderState(order);
 		try{
-			orderDAO.getOrderState(order);
+			return orderDAO.getOrderState(order);
 		} catch (Exception se){
 			System.err.println("OrderManager: Threw an Exception getting order state");
 			System.err.println(se.getMessage());
 		}
+		return null;
 	}
 
 }

@@ -201,15 +201,21 @@ public class OrderDAO {
 
 
   public String getOrderState(Order order){
-	  
+
     try{
       Statement con = DBHelper.getConnection().createStatement();
       String selectOrderQuery = "SELECT orderState FROM orders WHERE orderID = '" + order.getOrderId() + "'";
       ResultSet ordRS = con.executeQuery(selectOrderQuery);
 
-//      Order order = new Order();
-      String s = ordRS.getString("orderState");
-      return s;
+      Order order2 = new Order();
+      
+      while(ordRS.next()) {
+    	  order2.setOrderState(ordRS.getString("orderState"));    	  
+      }
+      
+      ordRS.close();
+      
+      return order2.getOrderState();
     } catch (SQLException se){
       System.err.println("OrderDAO: Threw a SQLException returning order state.");
       System.err.println(se.getMessage());
